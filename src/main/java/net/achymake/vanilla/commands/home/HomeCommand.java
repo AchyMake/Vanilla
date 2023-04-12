@@ -32,7 +32,7 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
             } else if (args.length == 1) {
                 Player player = (Player) sender;
                 if (args[0].equalsIgnoreCase("buy")){
-                    Message.sendMessage(player, "You cannot set home for "+args[0]);
+                    Message.sendMessage(player,"Home cost "+EconomyProvider.getFormat(Vanilla.getWorldConfig().getHomeCost()));
                 } else if (args[0].equalsIgnoreCase("bed")) {
                     if (player.getBedSpawnLocation() != null){
                         if (player.hasPermission("vanilla.command.home.bed")){

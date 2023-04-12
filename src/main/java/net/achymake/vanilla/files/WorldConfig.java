@@ -16,6 +16,32 @@ public class WorldConfig {
     public PersistentDataContainer getData(){
         return Vanilla.getInstance().getServer().getWorlds().get(0).getPersistentDataContainer();
     }
+    public void setup(){
+        if (!getData().has(NamespacedKey.minecraft("homes.max-homes"), PersistentDataType.INTEGER)){
+            getData().set(NamespacedKey.minecraft("homes.max-homes"),PersistentDataType.INTEGER,1);
+        }
+        if (!getData().has(NamespacedKey.minecraft("homes.cost"),PersistentDataType.DOUBLE)){
+            getData().set(NamespacedKey.minecraft("homes.cost"),PersistentDataType.DOUBLE,750.0);
+        }
+        if (!getData().has(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING)){
+            getData().set(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING,"$");
+        }
+        if (!getData().has(NamespacedKey.minecraft("economy.format"),PersistentDataType.STRING)){
+            getData().set(NamespacedKey.minecraft("economy.format"),PersistentDataType.STRING,"#,##0.00");
+        }
+        if (!getData().has(NamespacedKey.minecraft("economy.starting-balance"),PersistentDataType.DOUBLE)){
+            getData().set(NamespacedKey.minecraft("economy.starting-balance"),PersistentDataType.DOUBLE,0.0);
+        }
+        if (!getData().has(NamespacedKey.minecraft("spawn.world"),PersistentDataType.STRING)){
+            Location location = Vanilla.getInstance().getServer().getWorlds().get(0).getSpawnLocation();
+            getData().set(NamespacedKey.minecraft("spawn.world"),PersistentDataType.STRING,location.getWorld().getName());
+            getData().set(NamespacedKey.minecraft("spawn.x"),PersistentDataType.DOUBLE,location.getX());
+            getData().set(NamespacedKey.minecraft("spawn.y"),PersistentDataType.DOUBLE,location.getY());
+            getData().set(NamespacedKey.minecraft("spawn.z"),PersistentDataType.DOUBLE,location.getZ());
+            getData().set(NamespacedKey.minecraft("spawn.yaw"),PersistentDataType.FLOAT,location.getYaw());
+            getData().set(NamespacedKey.minecraft("spawn.pitch"),PersistentDataType.FLOAT,location.getPitch());
+        }
+    }
     public boolean isSpawnSet(){
         return getData().has(NamespacedKey.minecraft("spawn.world"),PersistentDataType.STRING);
     }
@@ -35,6 +61,36 @@ public class WorldConfig {
         Float yaw = getData().get(NamespacedKey.minecraft("spawn.yaw"),PersistentDataType.FLOAT);
         Float pitch = getData().get(NamespacedKey.minecraft("spawn.pitch"),PersistentDataType.FLOAT);
         return new Location(Vanilla.getInstance().getServer().getWorld(worldName), x,y,z,yaw,pitch);
+    }
+    public String getEconomyCurrency(){
+        return getData().get(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING);
+    }
+    public void setEconomyCurrency(String currency){
+        getData().set(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING, currency);
+    }
+    public String getEconomyFormat(){
+        return getData().get(NamespacedKey.minecraft("economy.format"),PersistentDataType.STRING);
+    }
+    public void setEconomyFormat(String format){
+        getData().set(NamespacedKey.minecraft("economy.format"),PersistentDataType.STRING, format);
+    }
+    public Double getEconomyStartingBalance(){
+        return getData().get(NamespacedKey.minecraft("economy.starting-balance"),PersistentDataType.DOUBLE);
+    }
+    public void setEconomyStartingBalance(Double startingBalance){
+        getData().set(NamespacedKey.minecraft("economy.starting-balance"),PersistentDataType.DOUBLE, startingBalance);
+    }
+    public Double getHomeCost(){
+        return getData().get(NamespacedKey.minecraft("homes.cost"),PersistentDataType.DOUBLE);
+    }
+    public void setHomeCost(Double cost){
+        getData().set(NamespacedKey.minecraft("homes.cost"),PersistentDataType.DOUBLE,cost);
+    }
+    public Integer getMaxHomes(){
+        return getData().get(NamespacedKey.minecraft("homes.max-homes"),PersistentDataType.INTEGER);
+    }
+    public void setMaxHomes(Integer integer){
+        getData().set(NamespacedKey.minecraft("homes.max-homes"),PersistentDataType.INTEGER,integer);
     }
     public boolean isDisabled(String type){
         return getData().has(NamespacedKey.minecraft(type), PersistentDataType.STRING);

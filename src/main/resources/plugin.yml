@@ -16,6 +16,10 @@ commands:
     permission: vanilla.command.balance
     aliases:
       - bal
+  eco:
+    description: message
+    usage: /eco
+    permission: vanilla.command.eco
   delhome:
     description: message
     usage: /delhome name
@@ -49,6 +53,26 @@ permissions:
     description: message
     default: op
   vanilla.command.balance.others:
+    description: message
+    default: op
+  vanilla.command.eco:
+    description: message
+    default: op
+    children:
+      - vanilla.command.eco.add
+      - vanilla.command.eco.remove
+      - vanilla.command.eco.reset
+      - vanilla.command.eco.set
+  vanilla.command.eco.add:
+    description: message
+    default: op
+  vanilla.command.eco.remove:
+    description: message
+    default: op
+  vanilla.command.eco.reset:
+    description: message
+    default: op
+  vanilla.command.eco.set:
     description: message
     default: op
   vanilla.command.delhome:

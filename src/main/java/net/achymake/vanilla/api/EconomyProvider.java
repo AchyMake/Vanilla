@@ -29,7 +29,7 @@ public class EconomyProvider {
         player.getPersistentDataContainer().set(NamespacedKey.minecraft("account"),PersistentDataType.DOUBLE,amount);
     }
     public static void resetEconomy(Player player) {
-        player.getPersistentDataContainer().set(NamespacedKey.minecraft("account"),PersistentDataType.DOUBLE,Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("economy.starting-balance"),PersistentDataType.DOUBLE));
+        player.getPersistentDataContainer().set(NamespacedKey.minecraft("account"),PersistentDataType.DOUBLE,Vanilla.getWorldConfig().getEconomyStartingBalance());
     }
     public static String getFormat(Double value) {
         String format = Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("economy.format"),PersistentDataType.STRING);

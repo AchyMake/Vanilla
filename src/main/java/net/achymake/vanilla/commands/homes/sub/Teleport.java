@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 public class Teleport extends HomesSubCommand {
     @Override
     public String getName() {
-        return "reset";
+        return "teleport";
     }
 
     @Override
