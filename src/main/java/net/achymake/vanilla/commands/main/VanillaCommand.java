@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 
@@ -42,6 +43,7 @@ public class VanillaCommand implements CommandExecutor, TabCompleter {
         List<String> commands = new ArrayList<>();
         if (args.length == 1) {
             commands.add("economy");
+            commands.add("entity");
             commands.add("homes");
             commands.add("reset");
         }
@@ -54,6 +56,12 @@ public class VanillaCommand implements CommandExecutor, TabCompleter {
             if (args[0].equalsIgnoreCase("homes")){
                 commands.add("max-homes");
                 commands.add("cost");
+            }
+            if (args[0].equalsIgnoreCase("entity")){
+                commands.add("block-form");
+                commands.add("change-block");
+                commands.add("explode");
+                commands.add("spawn");
             }
             if (args[0].equalsIgnoreCase("reset")){
                 for (Player players : sender.getServer().getOnlinePlayers()){
@@ -79,6 +87,27 @@ public class VanillaCommand implements CommandExecutor, TabCompleter {
                 }
                 if (args[1].equalsIgnoreCase("cost")){
                     commands.add(String.valueOf(Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("homes.cost"), PersistentDataType.DOUBLE)));
+                }
+            }
+            if (args[0].equalsIgnoreCase("entity")){
+                for (EntityType entityTypes : EntityType.values()){
+                    commands.add(entityTypes.toString().toLowerCase());
+                }
+            }
+        }
+        if (args.length == 4){
+            if (args[0].equalsIgnoreCase("entity")){
+                if (args[1].equalsIgnoreCase("block-form")){
+                    commands.add(String.valueOf(Vanilla.getWorldConfig().isDisabled("block-form."+args[2])));
+                }
+                if (args[1].equalsIgnoreCase("change-block")){
+                    commands.add(String.valueOf(Vanilla.getWorldConfig().isDisabled("change-block."+args[2])));
+                }
+                if (args[1].equalsIgnoreCase("explode")){
+                    commands.add(String.valueOf(Vanilla.getWorldConfig().isDisabled("explode."+args[2])));
+                }
+                if (args[1].equalsIgnoreCase("spawn")){
+                    commands.add(String.valueOf(Vanilla.getWorldConfig().isDisabled("spawn."+args[2])));
                 }
             }
         }

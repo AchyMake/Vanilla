@@ -5,15 +5,15 @@ import net.achymake.vanilla.files.WorldConfig;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityChangeBlockEvent;
+import org.bukkit.event.block.EntityBlockFormEvent;
 
-public class EntityChangeBlock implements Listener {
-    public EntityChangeBlock(Vanilla plugin) {
+public class EntityBlockForm implements Listener {
+    public EntityBlockForm(Vanilla plugin) {
         Vanilla.getInstance().getServer().getPluginManager().registerEvents(this, plugin);
     }
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onEntitySpawnEvent(EntityChangeBlockEvent event) {
-        if (!new WorldConfig(Vanilla.getInstance()).isDisabled("change-block."+event.getEntity().getType().toString().toLowerCase()))return;
+    public void onEntitySpawnEvent(EntityBlockFormEvent event) {
+        if (!new WorldConfig(Vanilla.getInstance()).isDisabled("block-form."+event.getEntity().getType().toString().toLowerCase()))return;
         event.setCancelled(true);
     }
 }

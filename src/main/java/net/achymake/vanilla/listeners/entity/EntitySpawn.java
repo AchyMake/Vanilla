@@ -13,7 +13,7 @@ public class EntitySpawn implements Listener {
     }
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntitySpawnEvent(EntitySpawnEvent event) {
-        if (!new WorldConfig(Vanilla.getInstance()).isDisabled(event.getEntity().getType().toString().toLowerCase()))return;
+        if (!new WorldConfig(Vanilla.getInstance()).isDisabled("spawn."+event.getEntity().getType().toString().toLowerCase()))return;
         event.setCancelled(true);
     }
 }
