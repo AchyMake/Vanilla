@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 public class Disable extends VanillaSubCommand {
     @Override
     public String getName() {
-        return "entity";
+        return "disable";
     }
 
     @Override
@@ -18,7 +18,7 @@ public class Disable extends VanillaSubCommand {
 
     @Override
     public String getSyntax() {
-        return "/vanilla entity block-form/change-block/explode/spawn entity true/false";
+        return "/vanilla disable block-form/change-block/explode/spawn entity true/false";
     }
 
     @Override
