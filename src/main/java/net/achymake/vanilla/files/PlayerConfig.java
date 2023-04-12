@@ -137,7 +137,7 @@ public class PlayerConfig {
         getData(player).set(NamespacedKey.minecraft("max-homes"),PersistentDataType.INTEGER,getData(player).get(NamespacedKey.minecraft("max-homes"),PersistentDataType.INTEGER) - integer);
     }
     public boolean isCreated(Player player){
-        return getData(player).has(NamespacedKey.minecraft("vanilla"), PersistentDataType.STRING);
+        return getData(player).has(NamespacedKey.minecraft("account"), PersistentDataType.DOUBLE);
     }
     public Double getEconomy(Player player){
         return getData(player).get(NamespacedKey.minecraft("account"), PersistentDataType.DOUBLE);

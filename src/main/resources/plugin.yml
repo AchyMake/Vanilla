@@ -28,6 +28,10 @@ commands:
     description: message
     usage: /sethome name
     permission: vanilla.command.sethome
+  homes:
+    description: message
+    usage: /homes
+    permission: vanilla.command.homes
   vanilla:
     description: message
     usage: /vanilla
@@ -53,10 +57,19 @@ permissions:
   vanilla.command.home:
     description: message
     default: op
-  vanilla.command.vanilla:
+  vanilla.command.sethome:
     description: message
     default: op
-  vanilla.command.sethome:
+  vanilla.command.homes:
+    description: message
+    default: op
+  vanilla.command.homes.delete:
+    description: message
+    default: op
+  vanilla.command.homes.teleport:
+    description: message
+    default: op
+  vanilla.command.vanilla:
     description: message
     default: op
   vanilla.command.setspawn:

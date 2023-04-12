@@ -5,6 +5,7 @@ import net.achymake.vanilla.commands.balance.BalanceCommand;
 import net.achymake.vanilla.commands.home.DelhomeCommand;
 import net.achymake.vanilla.commands.home.HomeCommand;
 import net.achymake.vanilla.commands.home.SethomeCommand;
+import net.achymake.vanilla.commands.homes.HomesCommand;
 import net.achymake.vanilla.commands.main.VanillaCommand;
 import net.achymake.vanilla.commands.spawn.SetSpawnCommand;
 import net.achymake.vanilla.commands.spawn.SpawnCommand;
@@ -15,6 +16,7 @@ public class Commands {
         plugin.getCommand("delhome").setExecutor(new DelhomeCommand());
         plugin.getCommand("home").setExecutor(new HomeCommand());
         plugin.getCommand("sethome").setExecutor(new SethomeCommand());
+        plugin.getCommand("homes").setExecutor(new HomesCommand());
         plugin.getCommand("vanilla").setExecutor(new VanillaCommand());
         plugin.getCommand("setspawn").setExecutor(new SetSpawnCommand());
         plugin.getCommand("spawn").setExecutor(new SpawnCommand());

@@ -30,12 +30,12 @@ public class Economy extends VanillaSubCommand {
             if (args[1].equalsIgnoreCase("currency")){
                 String currency = args[2];
                 Vanilla.getWorldConfig().getData().set(NamespacedKey.minecraft("economy.currency"), PersistentDataType.STRING,currency);
-                Message.sendMessage(player,"Currency changed to "+ Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("economy.currency"),PersistentDataType.INTEGER));
+                Message.sendMessage(player,"Currency changed to "+ Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING));
             }
             if (args[1].equalsIgnoreCase("format")){
                 String format = args[2];
                 Vanilla.getWorldConfig().getData().set(NamespacedKey.minecraft("economy.format"), PersistentDataType.STRING,format);
-                Message.sendMessage(player,"Economy format changed to "+ EconomyProvider.getFormat(Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("economy.format"),PersistentDataType.DOUBLE)));
+                Message.sendMessage(player,"Economy format changed to "+ EconomyProvider.getFormat(Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("economy.starting-balance"),PersistentDataType.DOUBLE)));
             }
             if (args[1].equalsIgnoreCase("starting-balance")){
                 Double startingBalance = Double.valueOf(args[2]);
