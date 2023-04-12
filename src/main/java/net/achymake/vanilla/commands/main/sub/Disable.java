@@ -2,9 +2,10 @@ package net.achymake.vanilla.commands.main.sub;
 
 import net.achymake.vanilla.Vanilla;
 import net.achymake.vanilla.commands.main.VanillaSubCommand;
+import net.achymake.vanilla.files.Message;
 import org.bukkit.entity.Player;
 
-public class Entity extends VanillaSubCommand {
+public class Disable extends VanillaSubCommand {
     @Override
     public String getName() {
         return "entity";
@@ -24,6 +25,7 @@ public class Entity extends VanillaSubCommand {
     public void perform(Player player, String[] args) {
         if (args.length == 4) {
             Vanilla.getWorldConfig().setBoolean(args[1]+"."+args[2],Boolean.valueOf(args[3]));
+            Message.sendMessage(player,args[1]+"."+args[2]+" is set to "+args[3]);
         }
     }
 }

@@ -2,6 +2,7 @@ package net.achymake.vanilla.commands.main;
 
 import net.achymake.vanilla.Vanilla;
 import net.achymake.vanilla.commands.main.sub.Economy;
+import net.achymake.vanilla.commands.main.sub.Disable;
 import net.achymake.vanilla.commands.main.sub.Homes;
 import net.achymake.vanilla.commands.main.sub.Reset;
 import org.bukkit.NamespacedKey;
@@ -20,6 +21,7 @@ public class VanillaCommand implements CommandExecutor, TabCompleter {
     public ArrayList<VanillaSubCommand> vanillaSubCommands = new ArrayList<>();
     public VanillaCommand(){
         vanillaSubCommands.add(new Economy());
+        vanillaSubCommands.add(new Disable());
         vanillaSubCommands.add(new Homes());
         vanillaSubCommands.add(new Reset());
     }
@@ -43,7 +45,7 @@ public class VanillaCommand implements CommandExecutor, TabCompleter {
         List<String> commands = new ArrayList<>();
         if (args.length == 1) {
             commands.add("economy");
-            commands.add("entity");
+            commands.add("disable");
             commands.add("homes");
             commands.add("reset");
         }
@@ -57,7 +59,7 @@ public class VanillaCommand implements CommandExecutor, TabCompleter {
                 commands.add("max-homes");
                 commands.add("cost");
             }
-            if (args[0].equalsIgnoreCase("entity")){
+            if (args[0].equalsIgnoreCase("disable")){
                 commands.add("block-form");
                 commands.add("change-block");
                 commands.add("explode");
@@ -89,14 +91,14 @@ public class VanillaCommand implements CommandExecutor, TabCompleter {
                     commands.add(String.valueOf(Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("homes.cost"), PersistentDataType.DOUBLE)));
                 }
             }
-            if (args[0].equalsIgnoreCase("entity")){
+            if (args[0].equalsIgnoreCase("disable")){
                 for (EntityType entityTypes : EntityType.values()){
                     commands.add(entityTypes.toString().toLowerCase());
                 }
             }
         }
         if (args.length == 4){
-            if (args[0].equalsIgnoreCase("entity")){
+            if (args[0].equalsIgnoreCase("disable")){
                 if (args[1].equalsIgnoreCase("block-form")){
                     commands.add(String.valueOf(Vanilla.getWorldConfig().isDisabled("block-form."+args[2])));
                 }
