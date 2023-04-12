@@ -2,6 +2,7 @@ package net.achymake.vanilla.commands.main.sub;
 
 import net.achymake.vanilla.Vanilla;
 import net.achymake.vanilla.commands.main.VanillaSubCommand;
+import net.achymake.vanilla.files.Message;
 import org.bukkit.entity.Player;
 
 public class Reset extends VanillaSubCommand {
@@ -26,6 +27,7 @@ public class Reset extends VanillaSubCommand {
             Player target = player.getServer().getPlayerExact(args[1]);
             if (target != null){
                 Vanilla.getPlayerConfig().reset(player);
+                Message.sendMessage(player,target.getName() + " has been reset");
             }
         }
     }

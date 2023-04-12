@@ -24,8 +24,15 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
                 Player player = (Player) sender;
                 if (Vanilla.getPlayerConfig().getHomes(player).contains("home")){
                     Vanilla.getPlayerConfig().getHome(player,"home").getChunk().load();
-                    Message.sendMessage(player, "Teleporting home");
-                    player.teleport(Vanilla.getPlayerConfig().getHome(player,"home"));
+                    Message.sendMessage(player, "Teleporting to home");
+                    Vanilla.getInstance().getServer().getScheduler().runTaskLater(Vanilla.getInstance(), new Runnable() {
+                        @Override
+                        public void run() {
+                            if (player != null){
+                                player.teleport(Vanilla.getPlayerConfig().getHome(player,"home"));
+                            }
+                        }
+                    },20);
                 }else{
                     Message.sendMessage(player, "Home has not been set");
                 }
@@ -40,15 +47,30 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
                             location.setPitch(player.getLocation().getPitch());
                             location.setYaw(player.getLocation().getYaw());
                             player.getBedSpawnLocation().getChunk().load();
-                            player.teleport(location);
+                            Message.sendMessage(player, "Teleporting to "+args[0]);
+                            Vanilla.getInstance().getServer().getScheduler().runTaskLater(Vanilla.getInstance(), new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (player != null){
+                                        player.teleport(location);
+                                    }
+                                }
+                            },20);
                         }
                     }else{
                         Message.sendMessage(player, args[0]+" does not exist");
                     }
                 }else if (Vanilla.getPlayerConfig().getHomes(player).contains(args[0])){
                     Vanilla.getPlayerConfig().getHome(player,args[0]).getChunk().load();
-                    Message.sendMessage(player,"Teleporting "+args[0]);
-                    player.teleport(Vanilla.getPlayerConfig().getHome(player,args[0]));
+                    Message.sendMessage(player, "Teleporting to "+args[0]);
+                    Vanilla.getInstance().getServer().getScheduler().runTaskLater(Vanilla.getInstance(), new Runnable() {
+                        @Override
+                        public void run() {
+                            if (player != null){
+                                player.teleport(Vanilla.getPlayerConfig().getHome(player,args[0]));
+                            }
+                        }
+                    },20);
                 }else{
                     Message.sendMessage(player, args[0]+" does not exist");
                 }

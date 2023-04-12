@@ -22,7 +22,7 @@ public class Reset extends EcoSubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
-        if (args.length == 3) {
+        if (args.length == 2) {
             Player target = player.getServer().getPlayerExact(args[1]);
             if (target != null){
                 EconomyProvider.resetEconomy(target);

@@ -29,8 +29,15 @@ public class Teleport extends HomesSubCommand {
             if (target != null){
                 if (Vanilla.getPlayerConfig().getHomes(target).contains(homeName)){
                     Vanilla.getPlayerConfig().getHome(target,homeName).getChunk().load();
-                    player.teleport(Vanilla.getPlayerConfig().getHome(target,homeName));
                     Message.sendMessage(player,"Teleporting to "+homeName+ " of "+target.getName());
+                    Vanilla.getInstance().getServer().getScheduler().runTaskLater(Vanilla.getInstance(), new Runnable() {
+                        @Override
+                        public void run() {
+                            if (player != null){
+                                player.teleport(Vanilla.getPlayerConfig().getHome(target,homeName));
+                            }
+                        }
+                    },20);
                 }
             }
         }
