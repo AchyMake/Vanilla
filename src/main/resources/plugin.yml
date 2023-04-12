@@ -1,0 +1,60 @@
+name: Vanilla
+version: '${project.version}'
+main: net.achymake.vanilla.Vanilla
+api-version: 1.19
+load: STARTUP
+author: AchyMake
+prefix: '${project.name}'
+description: '${project.description}'
+depend:
+  - Vault
+  - PlaceholderAPI
+commands:
+  balance:
+    description: message
+    usage: /balance
+    permission: vanilla.command.balance
+    aliases:
+      - bal
+  delhome:
+    description: message
+    usage: /delhome name
+    permission: vanilla.command.delhome
+  home:
+    description: message
+    usage: /home name
+    permission: vanilla.command.home
+  sethome:
+    description: message
+    usage: /sethome name
+    permission: vanilla.command.sethome
+  setspawn:
+    description: message
+    usage: /setspawn
+    permission: vanilla.command.setspawn
+  spawn:
+    description: message
+    usage: /spawn
+    permission: vanilla.command.spawn
+permissions:
+  vanilla.command.balance:
+    description: message
+    default: op
+  vanilla.command.balance.others:
+    description: message
+    default: op
+  vanilla.command.delhome:
+    description: message
+    default: op
+  vanilla.command.home:
+    description: message
+    default: op
+  vanilla.command.sethome:
+    description: message
+    default: op
+  vanilla.command.setspawn:
+    description: message
+    default: op
+  vanilla.command.spawn:
+    description: message
+    default: op
