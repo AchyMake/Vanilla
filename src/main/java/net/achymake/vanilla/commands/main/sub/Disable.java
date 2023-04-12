@@ -25,7 +25,7 @@ public class Disable extends VanillaSubCommand {
     public void perform(Player player, String[] args) {
         if (args.length == 4) {
             Vanilla.getWorldConfig().setBoolean(args[1]+"."+args[2],Boolean.valueOf(args[3]));
-            Message.sendMessage(player,args[1]+"."+args[2]+" is set to "+args[3]);
+            Message.sendMessage(player,"Disable "+args[1]+" "+args[2]+" is set to "+args[3]);
         }
     }
 }
