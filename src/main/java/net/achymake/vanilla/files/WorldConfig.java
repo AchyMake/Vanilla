@@ -24,7 +24,7 @@ public class WorldConfig {
             getData().set(NamespacedKey.minecraft("homes.cost"),PersistentDataType.DOUBLE,750.0);
         }
         if (!getData().has(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING)){
-            getData().set(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING,"$");
+            getData().set(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING,"&a$");
         }
         if (!getData().has(NamespacedKey.minecraft("economy.format"),PersistentDataType.STRING)){
             getData().set(NamespacedKey.minecraft("economy.format"),PersistentDataType.STRING,"#,##0.00");
