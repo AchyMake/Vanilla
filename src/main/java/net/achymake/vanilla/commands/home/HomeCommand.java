@@ -3,7 +3,6 @@ package net.achymake.vanilla.commands.home;
 import net.achymake.vanilla.Vanilla;
 import net.achymake.vanilla.api.EconomyProvider;
 import net.achymake.vanilla.files.Message;
-import net.achymake.vanilla.files.PlayerConfig;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
@@ -21,13 +20,12 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player){
-            PlayerConfig playerConfig = Vanilla.getPlayerConfig();
             if (args.length == 0){
                 Player player = (Player) sender;
-                if (playerConfig.getHomes(player).contains("home")){
-                    playerConfig.getHome(player,"home").getChunk().load();
+                if (Vanilla.getPlayerConfig().getHomes(player).contains("home")){
+                    Vanilla.getPlayerConfig().getHome(player,"home").getChunk().load();
                     Message.sendMessage(player, "Teleporting home");
-                    player.teleport(playerConfig.getHome(player,"home"));
+                    player.teleport(Vanilla.getPlayerConfig().getHome(player,"home"));
                 }else{
                     Message.sendMessage(player, "Home has not been set");
                 }
@@ -47,10 +45,10 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
                     }else{
                         Message.sendMessage(player, args[0]+" does not exist");
                     }
-                }else if (playerConfig.getHomes(player).contains(args[0])){
-                    playerConfig.getHome(player,args[0]).getChunk().load();
+                }else if (Vanilla.getPlayerConfig().getHomes(player).contains(args[0])){
+                    Vanilla.getPlayerConfig().getHome(player,args[0]).getChunk().load();
                     Message.sendMessage(player,"Teleporting "+args[0]);
-                    player.teleport(playerConfig.getHome(player,args[0]));
+                    player.teleport(Vanilla.getPlayerConfig().getHome(player,args[0]));
                 }else{
                     Message.sendMessage(player, args[0]+" does not exist");
                 }
@@ -59,9 +57,9 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
                 String homeName = args[0];
                 if (homeName.equalsIgnoreCase("buy")) {
                     int amount = Integer.parseInt(args[1]);
-                    if (player.hasPermission("players.command.home.buy")){
+                    if (player.hasPermission("vanilla.command.home.buy")){
                         if (EconomyProvider.getEconomyRaw(player) >= Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("homes.cost"), PersistentDataType.DOUBLE) * amount) {
-                            playerConfig.addHomes(player,amount);
+                            Vanilla.getPlayerConfig().addHomes(player,amount);
                             EconomyProvider.removeEconomy(player,Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("homes.cost"), PersistentDataType.DOUBLE) * amount);
                             Message.sendMessage(player, "You bought "+amount+" homes for "+EconomyProvider.getFormat(Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("homes.cost"), PersistentDataType.DOUBLE)));
                         } else {
@@ -81,15 +79,15 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
             for (String home : Vanilla.getPlayerConfig().getHomes(player)){
                 commands.add(home);
             }
-            if (sender.hasPermission("players.command.home.bed")){
+            if (sender.hasPermission("vanilla.command.home.bed")){
                 commands.add("bed");
             }
-            if (sender.hasPermission("players.command.home.buy")){
+            if (sender.hasPermission("vanilla.command.home.buy")){
                 commands.add("buy");
             }
         }
         if (args.length == 2) {
-            if (sender.hasPermission("players.command.home.buy")){
+            if (sender.hasPermission("vanilla.command.home.buy")){
                 if (args[0].equalsIgnoreCase("buy")){
                     commands.add("1");
                     commands.add("2");

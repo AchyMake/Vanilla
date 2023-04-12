@@ -2,6 +2,7 @@ package net.achymake.vanilla;
 
 import net.achymake.vanilla.api.EconomyProvider;
 import net.achymake.vanilla.commands.Commands;
+import net.achymake.vanilla.files.Files;
 import net.achymake.vanilla.files.PlayerConfig;
 import net.achymake.vanilla.files.WorldConfig;
 import net.achymake.vanilla.listeners.Events;
@@ -20,7 +21,7 @@ public final class Vanilla extends JavaPlugin {
         this.getServer().getScheduler().runTaskLater(this, new Runnable() {
             @Override
             public void run() {
-                getWorldConfig().setup();
+                Files.worldConfigSetup();
             }
         },100);
         Commands.start(this);

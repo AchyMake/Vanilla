@@ -16,32 +16,6 @@ public class WorldConfig {
     public PersistentDataContainer getData(){
         return Vanilla.getInstance().getServer().getWorlds().get(0).getPersistentDataContainer();
     }
-    public void setup(){
-        if (!getData().has(NamespacedKey.minecraft("homes.default"),PersistentDataType.INTEGER)){
-            getData().set(NamespacedKey.minecraft("homes.default"),PersistentDataType.INTEGER,1);
-        }
-        if (!getData().has(NamespacedKey.minecraft("homes.cost"),PersistentDataType.DOUBLE)){
-            getData().set(NamespacedKey.minecraft("homes.cost"),PersistentDataType.DOUBLE,750.0);
-        }
-        if (!getData().has(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING)){
-            getData().set(NamespacedKey.minecraft("economy.currency"),PersistentDataType.STRING,"$");
-        }
-        if (!getData().has(NamespacedKey.minecraft("economy.format"),PersistentDataType.STRING)){
-            getData().set(NamespacedKey.minecraft("economy.format"),PersistentDataType.STRING,"#,##0.00");
-        }
-        if (!getData().has(NamespacedKey.minecraft("economy.starting-balance"),PersistentDataType.DOUBLE)){
-            getData().set(NamespacedKey.minecraft("economy.starting-balance"),PersistentDataType.DOUBLE,0.0);
-        }
-        if (!getData().has(NamespacedKey.minecraft("spawn.world"),PersistentDataType.STRING)){
-            Location location = Vanilla.getInstance().getServer().getWorlds().get(0).getSpawnLocation();
-            getData().set(NamespacedKey.minecraft("spawn.world"),PersistentDataType.STRING,location.getWorld().getName());
-            getData().set(NamespacedKey.minecraft("spawn.x"),PersistentDataType.DOUBLE,location.getX());
-            getData().set(NamespacedKey.minecraft("spawn.y"),PersistentDataType.DOUBLE,location.getY());
-            getData().set(NamespacedKey.minecraft("spawn.z"),PersistentDataType.DOUBLE,location.getZ());
-            getData().set(NamespacedKey.minecraft("spawn.yaw"),PersistentDataType.FLOAT,location.getYaw());
-            getData().set(NamespacedKey.minecraft("spawn.pitch"),PersistentDataType.FLOAT,location.getPitch());
-        }
-    }
     public boolean isSpawnSet(){
         return getData().has(NamespacedKey.minecraft("spawn.world"),PersistentDataType.STRING);
     }

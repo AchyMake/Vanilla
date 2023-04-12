@@ -37,6 +37,21 @@ public class PlayerConfig {
             getData(player).set(NamespacedKey.minecraft("homes"),PersistentDataType.STRING,"");
         }
     }
+    public void reset(Player player){
+        getData(player).set(NamespacedKey.minecraft("account"),PersistentDataType.DOUBLE,Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("economy.starting-balance"),PersistentDataType.DOUBLE));
+        getData(player).set(NamespacedKey.minecraft("max-homes"),PersistentDataType.INTEGER,Vanilla.getWorldConfig().getData().get(NamespacedKey.minecraft("homes.default"),PersistentDataType.INTEGER));
+        for (String homes : getHomes(player)){
+            if (getData(player).has(NamespacedKey.minecraft("home."+homes+".world"),PersistentDataType.STRING)){
+                getData(player).remove(NamespacedKey.minecraft("home."+homes+".world"));
+                getData(player).remove(NamespacedKey.minecraft("home."+homes+".x"));
+                getData(player).remove(NamespacedKey.minecraft("home."+homes+".y"));
+                getData(player).remove(NamespacedKey.minecraft("home."+homes+".z"));
+                getData(player).remove(NamespacedKey.minecraft("home."+homes+".yaw"));
+                getData(player).remove(NamespacedKey.minecraft("home."+homes+".pitch"));
+            }
+        }
+        getData(player).set(NamespacedKey.minecraft("homes"),PersistentDataType.STRING,"");
+    }
     public List<String> getHomes(Player player) {
         List<String> homeListed = new ArrayList<>();
         String encodedHomes = getData(player).get(NamespacedKey.minecraft("homes"), PersistentDataType.STRING);

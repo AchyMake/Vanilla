@@ -2,7 +2,6 @@ package net.achymake.vanilla.commands.home;
 
 import net.achymake.vanilla.Vanilla;
 import net.achymake.vanilla.files.Message;
-import net.achymake.vanilla.files.PlayerConfig;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,10 +16,9 @@ public class DelhomeCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player){
             if (args.length == 1){
-                PlayerConfig playerConfig = Vanilla.getPlayerConfig();
                 Player player = (Player) sender;
-                if (playerConfig.getHomes(player).contains(args[0])){
-                    playerConfig.removeHome(player,args[0]);
+                if (Vanilla.getPlayerConfig().getHomes(player).contains(args[0])){
+                    Vanilla.getPlayerConfig().removeHome(player,args[0]);
                     Message.sendMessage(player, args[0]+" has been removed");
                 }else{
                     Message.sendMessage(player,args[0]+"&c does not exist");
