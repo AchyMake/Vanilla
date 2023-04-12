@@ -13,7 +13,7 @@ public class EntityBlockForm implements Listener {
     }
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntitySpawnEvent(EntityBlockFormEvent event) {
-        if (!new WorldConfig(Vanilla.getInstance()).isDisabled("block-form."+event.getEntity().getType().toString().toLowerCase()))return;
+        if (!new WorldConfig(Vanilla.getInstance()).isDisabled("block-form."+event.getEntity().getType()))return;
         event.setCancelled(true);
     }
 }

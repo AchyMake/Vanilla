@@ -13,7 +13,7 @@ public class EntityExplode implements Listener {
     }
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntitySpawnEvent(EntityExplodeEvent event) {
-        if (!new WorldConfig(Vanilla.getInstance()).isDisabled("explode."+event.getEntity().getType().toString().toLowerCase()))return;
+        if (!new WorldConfig(Vanilla.getInstance()).isDisabled("explode."+event.getEntity().getType()))return;
         event.setCancelled(true);
     }
 }

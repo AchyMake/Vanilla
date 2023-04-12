@@ -13,7 +13,7 @@ public class EntityChangeBlock implements Listener {
     }
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntitySpawnEvent(EntityChangeBlockEvent event) {
-        if (!new WorldConfig(Vanilla.getInstance()).isDisabled("change-block."+event.getEntity().getType().toString().toLowerCase()))return;
+        if (!new WorldConfig(Vanilla.getInstance()).isDisabled("change-block."+event.getEntity().getType()))return;
         event.setCancelled(true);
     }
 }
